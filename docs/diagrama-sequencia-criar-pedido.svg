@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="760" viewBox="0 0 1300 760">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 30px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 16px Arial, sans-serif; fill: #475569; }
+      .actor { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 8; }
+      .object { fill: #eef6ff; stroke: #2563eb; stroke-width: 2; rx: 8; }
+      .service { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 8; }
+      .db { fill: #fef2f2; stroke: #dc2626; stroke-width: 2; rx: 8; }
+      .label { font: 700 16px Arial, sans-serif; fill: #0f172a; }
+      .small { font: 400 13px Arial, sans-serif; fill: #475569; }
+      .life { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 7 6; }
+      .call { stroke: #334155; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .return { stroke: #64748b; stroke-width: 2; fill: none; stroke-dasharray: 6 5; marker-end: url(#arrowGray); }
+      .activation { fill: #e2e8f0; stroke: #475569; stroke-width: 1.5; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#334155" />
+    </marker>
+    <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#64748b" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1300" height="760" />
+  <text class="title" x="50" y="55">Diagrama de Sequencia - Criar Pedido</text>
+  <text class="subtitle" x="50" y="83">Fluxo da requisicao POST /pedidos ate salvar no banco</text>
+
+  <rect class="actor" x="55" y="130" width="160" height="62" />
+  <text class="label" x="102" y="166">Postman</text>
+
+  <rect class="object" x="285" y="130" width="190" height="62" />
+  <text class="label" x="317" y="166">PedidoController</text>
+
+  <rect class="service" x="545" y="130" width="170" height="62" />
+  <text class="label" x="581" y="166">PedidoService</text>
+
+  <rect class="service" x="785" y="130" width="165" height="62" />
+  <text class="label" x="822" y="166">FreteService</text>
+
+  <rect class="object" x="1010" y="130" width="205" height="62" />
+  <text class="label" x="1045" y="166">PedidoRepository</text>
+
+  <line class="life" x1="135" y1="192" x2="135" y2="690" />
+  <line class="life" x1="380" y1="192" x2="380" y2="690" />
+  <line class="life" x1="630" y1="192" x2="630" y2="690" />
+  <line class="life" x1="867" y1="192" x2="867" y2="690" />
+  <line class="life" x1="1112" y1="192" x2="1112" y2="690" />
+
+  <rect class="activation" x="373" y="240" width="14" height="370" />
+  <rect class="activation" x="623" y="300" width="14" height="260" />
+  <rect class="activation" x="860" y="365" width="14" height="80" />
+  <rect class="activation" x="1105" y="485" width="14" height="65" />
+
+  <path class="call" d="M135 255 L373 255" />
+  <text class="small" x="180" y="240">POST /pedidos</text>
+  <text class="small" x="180" y="273">cliente, valorPedido, tipoEnvio</text>
+
+  <path class="call" d="M387 315 L623 315" />
+  <text class="small" x="430" y="300">criar(request)</text>
+
+  <path class="call" d="M637 380 L860 380" />
+  <text class="small" x="680" y="365">calcular(tipoEnvio, valorPedido)</text>
+
+  <path class="return" d="M860 430 L637 430" />
+  <text class="small" x="710" y="416">valorFrete</text>
+
+  <path class="call" d="M637 500 L1105 500" />
+  <text class="small" x="730" y="485">save(pedido)</text>
+  <text class="small" x="730" y="518">status = AGUARDANDO_PAGAMENTO</text>
+
+  <path class="return" d="M1105 545 L637 545" />
+  <text class="small" x="780" y="532">pedido salvo com id</text>
+
+  <path class="return" d="M623 575 L387 575" />
+  <text class="small" x="452" y="562">Pedido</text>
+
+  <path class="return" d="M373 625 L135 625" />
+  <text class="small" x="180" y="612">201 Created</text>
+  <text class="small" x="180" y="645">PedidoResponse em JSON</text>
+
+  <rect class="db" x="1010" y="640" width="205" height="54" />
+  <text class="label" x="1070" y="673">Banco H2</text>
+  <path class="call" d="M1112 550 L1112 640" />
+</svg>

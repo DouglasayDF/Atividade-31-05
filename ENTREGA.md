@@ -144,6 +144,37 @@ Esse diagrama mostra as transicoes permitidas:
 - De `PAGO`, pode ir para `ENVIADO` ou `CANCELADO`.
 - `ENVIADO` e `CANCELADO` sao estados finais.
 
+## Diagrama de arquitetura
+
+A imagem do diagrama de arquitetura esta disponivel em:
+
+`docs/diagrama-arquitetura.svg`
+
+Esse diagrama mostra a separacao em camadas:
+
+- `Postman`: cliente usado para testar a API.
+- `PedidoController`: recebe as requisicoes HTTP.
+- `PedidoService`: executa as regras de negocio.
+- `State Pattern`: controla as transicoes de status.
+- `Strategy Pattern`: calcula o frete.
+- `PedidoRepository`: realiza a persistencia via Spring Data JPA.
+- `H2`: banco de dados usado nos testes.
+
+## Diagrama de sequencia
+
+A imagem do diagrama de sequencia esta disponivel em:
+
+`docs/diagrama-sequencia-criar-pedido.svg`
+
+Esse diagrama mostra o fluxo para criar um pedido:
+
+1. O Postman envia `POST /pedidos`.
+2. O `PedidoController` recebe o JSON.
+3. O `PedidoService` executa a regra de criacao.
+4. O `FreteService` calcula o frete conforme o tipo de envio.
+5. O `PedidoRepository` salva o pedido no banco.
+6. A API retorna `201 Created` com os dados do pedido.
+
 ## Padroes de projeto utilizados
 
 ### State
