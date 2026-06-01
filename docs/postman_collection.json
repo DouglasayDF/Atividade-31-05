@@ -1,0 +1,88 @@
+{
+  "info": {
+    "name": "Atividade E-commerce Pedidos",
+    "description": "Collection para testar a API de pedidos do e-commerce.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "pedidoId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Criar pedido terrestre",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/pedidos",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": \"Maria Silva\",\n  \"valorPedido\": 200.00,\n  \"tipoEnvio\": \"TERRESTRE\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Criar pedido aereo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/pedidos",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": \"Joao Santos\",\n  \"valorPedido\": 300.00,\n  \"tipoEnvio\": \"AEREO\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Listar pedidos",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/pedidos"
+      }
+    },
+    {
+      "name": "Buscar pedido por ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/pedidos/{{pedidoId}}"
+      }
+    },
+    {
+      "name": "Pagar pedido",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos/{{pedidoId}}/pagar"
+      }
+    },
+    {
+      "name": "Cancelar pedido",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos/{{pedidoId}}/cancelar"
+      }
+    },
+    {
+      "name": "Enviar pedido",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos/{{pedidoId}}/enviar"
+      }
+    }
+  ]
+}

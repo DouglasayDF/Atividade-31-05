@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 28px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 15px Arial, sans-serif; fill: #475569; }
+      .state { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 14; }
+      .initial { fill: #dcfce7; stroke: #16a34a; stroke-width: 2.5; rx: 14; }
+      .final { fill: #fee2e2; stroke: #dc2626; stroke-width: 2.5; rx: 14; }
+      .label { font: 700 18px Arial, sans-serif; fill: #0f172a; }
+      .small { font: 400 13px Arial, sans-serif; fill: #475569; }
+      .arrow { stroke: #334155; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .cancel { stroke: #dc2626; stroke-width: 2.5; fill: none; marker-end: url(#arrowRed); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#334155" />
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#dc2626" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1100" height="620" />
+  <text class="title" x="50" y="55">Diagrama de Estados da classe Pedido</text>
+  <text class="subtitle" x="50" y="83">Transições implementadas pelo padrão State</text>
+
+  <rect class="initial" x="80" y="235" width="260" height="110" />
+  <text class="label" x="132" y="285">AGUARDANDO</text>
+  <text class="label" x="132" y="305">PAGAMENTO</text>
+  <text class="small" x="160" y="328">status inicial</text>
+
+  <rect class="state" x="440" y="235" width="190" height="110" />
+  <text class="label" x="506" y="300">PAGO</text>
+
+  <rect class="final" x="770" y="120" width="220" height="110" />
+  <text class="label" x="830" y="180">ENVIADO</text>
+  <text class="small" x="840" y="205">estado final</text>
+
+  <rect class="final" x="770" y="360" width="220" height="110" />
+  <text class="label" x="816" y="420">CANCELADO</text>
+  <text class="small" x="840" y="445">estado final</text>
+
+  <path class="arrow" d="M340 290 L440 290" />
+  <text class="small" x="370" y="276">pagar</text>
+
+  <path class="arrow" d="M630 262 C690 230, 720 190, 770 175" />
+  <text class="small" x="661" y="219">enviar</text>
+
+  <path class="cancel" d="M340 323 C500 440, 630 455, 770 425" />
+  <text class="small" x="503" y="442">cancelar</text>
+
+  <path class="cancel" d="M630 323 C690 365, 725 395, 770 410" />
+  <text class="small" x="681" y="357">cancelar</text>
+
+  <text class="small" x="80" y="535">Regras finais: pedido ENVIADO ou CANCELADO não permite trocas no estado após feitos.</text>
+</svg>

@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 30px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 16px Arial, sans-serif; fill: #475569; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 8; }
+      .interface { fill: #eef6ff; stroke: #2563eb; stroke-width: 2; rx: 8; }
+      .enum { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 8; }
+      .component { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 8; }
+      .header { font: 700 17px Arial, sans-serif; fill: #0f172a; }
+      .stereo { font: 400 13px Arial, sans-serif; fill: #64748b; }
+      .text { font: 400 14px Arial, sans-serif; fill: #1e293b; }
+      .small { font: 400 12px Arial, sans-serif; fill: #475569; }
+      .line { stroke: #334155; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .impl { stroke: #2563eb; stroke-width: 2; fill: none; stroke-dasharray: 7 5; marker-end: url(#triangle); }
+      .repo { stroke: #16a34a; stroke-width: 2; fill: none; marker-end: url(#arrowGreen); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#334155" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#16a34a" />
+    </marker>
+    <marker id="triangle" markerWidth="13" markerHeight="13" refX="12" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L12,6 L1,11 z" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1400" height="980" />
+  <text class="title" x="50" y="54">Diagrama de Classes - Sistema de Pedidos E-commerce</text>
+  <text class="subtitle" x="50" y="82">Spring Boot + JPA | Padroes State e Strategy</text>
+
+  <!-- API / Application layer -->
+  <rect class="component" x="70" y="140" width="250" height="150" />
+  <text class="stereo" x="145" y="166">&lt;&lt;RestController&gt;&gt;</text>
+  <text class="header" x="122" y="190">PedidoController</text>
+  <line x1="70" y1="205" x2="320" y2="205" stroke="#16a34a" stroke-width="1.5" />
+  <text class="text" x="90" y="230">+ criar(request)</text>
+  <text class="text" x="90" y="252">+ listar()</text>
+  <text class="text" x="90" y="274">+ buscar(id)</text>
+
+  <rect class="component" x="410" y="120" width="270" height="190" />
+  <text class="stereo" x="500" y="146">&lt;&lt;Service&gt;&gt;</text>
+  <text class="header" x="490" y="170">PedidoService</text>
+  <line x1="410" y1="185" x2="680" y2="185" stroke="#16a34a" stroke-width="1.5" />
+  <text class="text" x="432" y="210">+ criar(request)</text>
+  <text class="text" x="432" y="232">+ pagar(id)</text>
+  <text class="text" x="432" y="254">+ cancelar(id)</text>
+  <text class="text" x="432" y="276">+ enviar(id)</text>
+
+  <rect class="interface" x="780" y="140" width="260" height="130" />
+  <text class="stereo" x="865" y="166">&lt;&lt;interface&gt;&gt;</text>
+  <text class="header" x="842" y="190">PedidoRepository</text>
+  <line x1="780" y1="205" x2="1040" y2="205" stroke="#2563eb" stroke-width="1.5" />
+  <text class="text" x="803" y="230">extends JpaRepository</text>
+  <text class="text" x="803" y="252">&lt;Pedido, Long&gt;</text>
+
+  <!-- Domain -->
+  <rect class="box" x="500" y="405" width="350" height="280" />
+  <text class="stereo" x="630" y="431">&lt;&lt;Entity&gt;&gt;</text>
+  <text class="header" x="645" y="455">Pedido</text>
+  <line x1="500" y1="470" x2="850" y2="470" stroke="#334155" stroke-width="1.5" />
+  <text class="text" x="525" y="495">- id: Long</text>
+  <text class="text" x="525" y="517">- cliente: String</text>
+  <text class="text" x="525" y="539">- valorPedido: BigDecimal</text>
+  <text class="text" x="525" y="561">- valorFrete: BigDecimal</text>
+  <text class="text" x="525" y="583">- tipoEnvio: TipoEnvio</text>
+  <text class="text" x="525" y="605">- status: StatusPedido</text>
+  <text class="text" x="525" y="627">- criadoEm: LocalDateTime</text>
+  <line x1="500" y1="642" x2="850" y2="642" stroke="#334155" stroke-width="1.5" />
+  <text class="text" x="525" y="667">+ alterarStatus(status)</text>
+
+  <rect class="enum" x="930" y="400" width="260" height="180" />
+  <text class="stereo" x="1010" y="426">&lt;&lt;enum&gt;&gt;</text>
+  <text class="header" x="1000" y="450">StatusPedido</text>
+  <line x1="930" y1="465" x2="1190" y2="465" stroke="#ea580c" stroke-width="1.5" />
+  <text class="text" x="955" y="490">AGUARDANDO_PAGAMENTO</text>
+  <text class="text" x="955" y="512">PAGO</text>
+  <text class="text" x="955" y="534">ENVIADO</text>
+  <text class="text" x="955" y="556">CANCELADO</text>
+
+  <rect class="enum" x="930" y="625" width="260" height="130" />
+  <text class="stereo" x="1010" y="651">&lt;&lt;enum&gt;&gt;</text>
+  <text class="header" x="1018" y="675">TipoEnvio</text>
+  <line x1="930" y1="690" x2="1190" y2="690" stroke="#ea580c" stroke-width="1.5" />
+  <text class="text" x="955" y="715">TERRESTRE</text>
+  <text class="text" x="955" y="737">AEREO</text>
+
+  <!-- State pattern -->
+  <rect class="interface" x="70" y="420" width="300" height="190" />
+  <text class="stereo" x="165" y="446">&lt;&lt;interface&gt;&gt;</text>
+  <text class="header" x="165" y="470">EstadoPedido</text>
+  <line x1="70" y1="485" x2="370" y2="485" stroke="#2563eb" stroke-width="1.5" />
+  <text class="text" x="95" y="510">+ status(): StatusPedido</text>
+  <text class="text" x="95" y="532">+ pagar(pedido)</text>
+  <text class="text" x="95" y="554">+ cancelar(pedido)</text>
+  <text class="text" x="95" y="576">+ enviar(pedido)</text>
+
+  <rect class="component" x="70" y="650" width="300" height="95" />
+  <text class="stereo" x="165" y="676">&lt;&lt;Factory&gt;&gt;</text>
+  <text class="header" x="138" y="700">EstadoPedidoFactory</text>
+  <line x1="70" y1="715" x2="370" y2="715" stroke="#16a34a" stroke-width="1.5" />
+  <text class="text" x="95" y="738">+ obter(status): EstadoPedido</text>
+
+  <rect class="box" x="60" y="815" width="260" height="70" />
+  <text class="header" x="92" y="845">EstadoAguardandoPagamento</text>
+  <text class="small" x="98" y="867">pagar() | cancelar()</text>
+
+  <rect class="box" x="350" y="815" width="180" height="70" />
+  <text class="header" x="395" y="845">EstadoPago</text>
+  <text class="small" x="386" y="867">enviar() | cancelar()</text>
+
+  <rect class="box" x="560" y="815" width="180" height="70" />
+  <text class="header" x="603" y="845">EstadoEnviado</text>
+  <text class="small" x="603" y="867">estado final</text>
+
+  <rect class="box" x="770" y="815" width="190" height="70" />
+  <text class="header" x="812" y="845">EstadoCancelado</text>
+  <text class="small" x="815" y="867">estado final</text>
+
+  <!-- Strategy pattern -->
+  <rect class="interface" x="1060" y="125" width="280" height="170" />
+  <text class="stereo" x="1150" y="151">&lt;&lt;interface&gt;&gt;</text>
+  <text class="header" x="1130" y="175">CalculadoraFrete</text>
+  <line x1="1060" y1="190" x2="1340" y2="190" stroke="#2563eb" stroke-width="1.5" />
+  <text class="text" x="1085" y="215">+ tipo(): TipoEnvio</text>
+  <text class="text" x="1085" y="237">+ calcular(valor): BigDecimal</text>
+
+  <rect class="component" x="1060" y="320" width="280" height="95" />
+  <text class="stereo" x="1155" y="346">&lt;&lt;Service&gt;&gt;</text>
+  <text class="header" x="1152" y="370">FreteService</text>
+  <line x1="1060" y1="385" x2="1340" y2="385" stroke="#16a34a" stroke-width="1.5" />
+  <text class="text" x="1085" y="408">+ calcular(tipo, valor)</text>
+
+  <rect class="box" x="1075" y="815" width="160" height="70" />
+  <text class="header" x="1102" y="845">FreteTerrestre</text>
+  <text class="small" x="1112" y="867">5% do pedido</text>
+
+  <rect class="box" x="1240" y="815" width="140" height="70" />
+  <text class="header" x="1269" y="845">FreteAereo</text>
+  <text class="small" x="1269" y="867">10% do pedido</text>
+
+  <!-- Relations -->
+  <path class="line" d="M320 210 L410 210" />
+  <path class="repo" d="M680 205 L780 205" />
+  <path class="line" d="M655 310 L655 405" />
+  <path class="line" d="M850 505 L930 505" />
+  <path class="line" d="M850 635 L930 690" />
+
+  <path class="line" d="M545 310 C480 360, 395 380, 290 420" />
+  <path class="line" d="M545 310 C700 310, 890 335, 1060 365" />
+  <path class="line" d="M220 650 L220 610" />
+  <path class="line" d="M1060 365 L850 490" />
+  <path class="line" d="M1200 320 L1200 295" />
+
+  <path class="impl" d="M190 815 C185 745, 190 670, 215 610" />
+  <path class="impl" d="M440 815 C385 730, 315 655, 250 610" />
+  <path class="impl" d="M650 815 C540 720, 400 645, 275 610" />
+  <path class="impl" d="M865 815 C690 710, 470 635, 300 610" />
+
+  <path class="impl" d="M1155 815 C1155 620, 1175 455, 1190 295" />
+  <path class="impl" d="M1310 815 C1295 615, 1245 455, 1215 295" />
+
+  <text class="small" x="338" y="198">usa</text>
+  <text class="small" x="704" y="193">persiste</text>
+  <text class="small" x="675" y="360">cria/altera</text>
+  <text class="small" x="388" y="390">controla transicoes</text>
+  <text class="small" x="882" y="355">calcula frete</text>
+</svg>
